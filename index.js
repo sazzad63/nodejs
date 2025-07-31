@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const connectDB = require('./config/connectDB');
 const dotenv = require('dotenv');
-const signupRoute = require('./routes/auth/signupRoute');
+const authRouter = require('./routes/auth/authRouter');
+const userRoute = require('./routes/userRoute');
 dotenv.config();
 app.use(express.json());
 
 // Routes
-app.use('/api/signup', signupRoute);
+app.use('/api/auth', authRouter);
+app.use('/api/users', userRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
